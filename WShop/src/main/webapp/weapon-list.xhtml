@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/templates/layout.xhtml">
+    <ui:param name="title" value="Weapon Shop - Weapons"/>
+
+    <ui:define name="content">
+        <h:form id="form" enctype="multipart/form-data">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <p:dataTable var="weapon" value="#{weaponListBean.weaponList}" style="margin-bottom: 20px">
+                <p:column headerText="ID" field="id"/>
+
+                <p:column headerText="Name" field="name"/>
+
+                <p:column headerText="Type" sortBy="#{weapon.weaponType}" filterBy="#{weapon.weaponType}">
+                    <h:outputText value="#{weapon.weaponType.weaponTypeValue}" />
+                </p:column>
+
+                <p:column headerText="Serial Number" field="serialNumber"/>
+
+                <p:column>
+                    <p:linkButton value="Edit" outcome="weapon-edit">
+                        <o:param name="weapon" value="#{weapon.id}"/>
+                    </p:linkButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:linkButton value="Add Weapon" outcome="weapon-add"/>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+

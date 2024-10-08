@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui">
+    <!--@elvariable id="title" type="java.lang.String"-->
+    <h1>#{title}</h1>
+
+    <h:form>
+        <p:menubar>
+            <p:submenu label="Data">
+                <p:menuitem value="Weapons" outcome="/weapon-list"/>
+            </p:submenu>
+        </p:menubar>
+    </h:form>
+</ui:composition>
