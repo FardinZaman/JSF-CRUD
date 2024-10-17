@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layout.xhtml">
+    <ui:param name="title" value="Add New User Group"/>
+
+    <ui:define name="content">
+
+        <h:form id="form">
+            <h2>Add New User Group</h2>
+
+            <h:panelGrid columns="1" cellpadding="10" cellspacing="10">
+                <p:outputLabel for="name" value="Name"/>
+                <p:inputText id="name" value="#{userGroupBean.userGroup.name}"/>
+                
+                <p:outputLabel for="groupType" value="Group Type"/>
+                <p:selectOneMenu id="groupType" value="#{userGroupBean.userGroup.groupType}">
+                    <f:selectItem itemLabel="-- Select Group Type --" itemValue="" />
+                    <f:selectItems value="#{userGroupBean.groupTypes}" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="parent" value="Parent"/>
+                <p:selectOneMenu id="parent" value="#{userGroupBean.userGroup.parent}">
+                    <f:selectItem itemLabel="-- Select Parent --" itemValue="" />
+                    <f:selectItems value="#{userGroupListBean.userGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group}"/>
+                </p:selectOneMenu>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Cancel"
+                             action="user-group-list?faces-redirect=true"
+                             immediate="true"
+                             styleClass="ui-button-secondary"/>
+            <p:spacer/><p:spacer/>
+            <p:commandButton value="Submit"
+                             action="#{userGroupBean.addUserGroup}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
